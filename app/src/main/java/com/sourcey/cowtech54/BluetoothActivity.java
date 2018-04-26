@@ -55,6 +55,7 @@ import java.util.UUID;
 
 /**
  * Created by Wily on 07/03/2018.
+ * This Act connects to the COW device vie BT
  */
 
 
@@ -212,7 +213,11 @@ public class BluetoothActivity extends AppCompatActivity {
 
         //Set MODE radio buttons
         btRadio.setChecked(true);
+
         sdRadio.setChecked(true);
+
+
+        //VCS GitHub test
 
 
 
