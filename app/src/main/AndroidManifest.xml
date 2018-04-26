@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sourcey.cowtech54">
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+
+    <permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <permission
+        android:name="android.permission.BLUETOOTH"
+        android:label="BLUETOOTH" />
+    <permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="Cowtech54"
+        android:resizeableActivity="true"
+        android:theme="@style/AppTheme.Dark">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="stateUnchanged">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/AppTheme.Dark"
+            android:windowSoftInputMode="stateUnchanged"/>
+        <activity
+            android:name=".SignupActivity"
+            android:theme="@style/AppTheme.Dark"
+            android:windowSoftInputMode="stateUnchanged"/>
+        <activity
+            android:name=".DynamoDBActivity"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".SimpleXYPlotActivity"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".DynamicXYPlotActivity"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".OrientationSensorExampleActivity"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".RunTestActivity"
+            android:theme="@style/AppTheme.Dark" />
+        <activity
+            android:name=".BluetoothActivity"
+            android:windowSoftInputMode="stateUnchanged"
+            />
+        <activity
+            android:name=".ConnectedActivity"
+            android:label="@string/title_activity_connected"
+            android:theme="@style/AppTheme.Dark" />
+    </application>
+
+</manifest>
