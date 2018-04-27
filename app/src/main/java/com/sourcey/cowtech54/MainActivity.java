@@ -18,9 +18,6 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
-
 
 public class MainActivity extends AppCompatActivity { //ActionBarActivity
     private static final String TAG = "MainActivity";
@@ -39,8 +36,8 @@ public class MainActivity extends AppCompatActivity { //ActionBarActivity
     public static final String EXTRA_COLOR = "EXTRA_COLOR";
     public String mMessage = "unknown";
 
-    @Bind(R.id.bt_mainButton) Button _btButton; //Needs ButterKnife.bind to work
-    @Bind(R.id.dynamo_mainButton) Button _dynamoButton; //Needs ButterKnife.bind to work
+    private Button _btButton; //Needs ButterKnife.bind to work
+    private Button _dynamoButton; //Needs ButterKnife.bind to work
     private Button _sendBtn;
     private Button _updateBtn;
     private Button _createBtn;
@@ -67,13 +64,16 @@ public class MainActivity extends AppCompatActivity { //ActionBarActivity
         Intent intent = new Intent(this, LoginActivity.class);  //  << ========== ----
         startActivity(intent);
 
-        ButterKnife.bind(this); // In order to bind the objects and buttons views!
+      //  ButterKnife.bind(this); // In order to bind the objects and buttons views!
 
         clientManager = new AmazonClientManager(this);
 
         checkPermissions();
 
         mBluetoothDevice = (TextView)findViewById(R.id.btText);
+
+        _btButton = (Button) findViewById(R.id.bt_mainButton);
+        _dynamoButton = (Button) findViewById(R.id.dynamo_mainButton);
 
         _btButton.setOnClickListener(new View.OnClickListener() {
 

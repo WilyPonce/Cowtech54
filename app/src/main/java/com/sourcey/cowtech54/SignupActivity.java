@@ -11,27 +11,33 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import butterknife.ButterKnife;
-import butterknife.Bind;
-
 public class SignupActivity extends AppCompatActivity {
     private static final String TAG = "SignupActivity";
     private static final int REQUEST_LOGIN = 0;
 
-    @Bind(R.id.input_name) EditText _nameText;
-    @Bind(R.id.input_address) EditText _addressText;
-    @Bind(R.id.input_email) EditText _emailText;
-    @Bind(R.id.input_mobile) EditText _mobileText;
-    @Bind(R.id.input_password) EditText _passwordText;
-    @Bind(R.id.input_reEnterPassword) EditText _reEnterPasswordText;
-    @Bind(R.id.btn_signup) Button _signupButton;
-    @Bind(R.id.link_login) TextView _loginLink;
+    private EditText _nameText;
+    private EditText _addressText;
+    private EditText _emailText;
+    private EditText _mobileText;
+    private EditText _passwordText;
+    private EditText _reEnterPasswordText;
+    private Button _signupButton;
+    private TextView _loginLink;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        ButterKnife.bind(this);
+        //ButterKnife.bind(this);
+
+        _nameText = (EditText) findViewById(R.id.input_name);
+        _addressText = (EditText) findViewById(R.id.input_address);
+        _emailText  = (EditText) findViewById(R.id.input_email);
+        _mobileText = (EditText) findViewById(R.id.input_mobile);
+        _passwordText = (EditText) findViewById(R.id.input_password);
+        _reEnterPasswordText = (EditText) findViewById(R.id.input_reEnterPassword);
+        _signupButton = (Button) findViewById(R.id.btn_signup);
+        _loginLink = (TextView) findViewById(R.id.link_login);
 
         _signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
