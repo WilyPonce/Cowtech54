@@ -155,15 +155,15 @@
                 android:text="Dynamic PLOT" />
 
             <Button
-                android:id="@+id/runTestBtn"
+                android:id="@+id/serviceBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
                 android:layout_marginTop="12dp"
                 android:layout_weight="1.2"
 
-                android:text="Run Test"
-                android:visibility="gone" />
+                android:text="Service ACT"
+                android:visibility="visible" />
         </LinearLayout>
     </LinearLayout>
 

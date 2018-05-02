@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.sourcey.cowtech54.ServiceActivity">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+        android:layout_weight="10"
+        android:padding="10dp"
+        android:textSize="16sp" >
+    </TextView>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+        android:layout_weight="2"
+        android:padding="10dp"
+        android:textSize="16sp" >
+    </TextView>
+
+    <Button
+        android:id="@+id/serviceStartBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="START COW SERVICE" />
+
+    <Button
+        android:id="@+id/serviceStopBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+
+        android:text="STOP COW SERVICE" />
+
+</LinearLayout>

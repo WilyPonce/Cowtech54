@@ -8,10 +8,8 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
 
     <permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -41,11 +39,11 @@
         <activity
             android:name=".LoginActivity"
             android:theme="@style/AppTheme.Dark"
-            android:windowSoftInputMode="stateUnchanged"/>
+            android:windowSoftInputMode="stateUnchanged" />
         <activity
             android:name=".SignupActivity"
             android:theme="@style/AppTheme.Dark"
-            android:windowSoftInputMode="stateUnchanged"/>
+            android:windowSoftInputMode="stateUnchanged" />
         <activity
             android:name=".DynamoDBActivity"
             android:theme="@style/AppTheme.Dark" />
@@ -59,16 +57,19 @@
             android:name=".OrientationSensorExampleActivity"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".RunTestActivity"
-            android:theme="@style/AppTheme.Dark" />
-        <activity
             android:name=".BluetoothActivity"
-            android:windowSoftInputMode="stateUnchanged"
-            />
+            android:windowSoftInputMode="stateUnchanged" />
         <activity
             android:name=".ConnectedActivity"
             android:label="@string/title_activity_connected"
             android:theme="@style/AppTheme.Dark" />
+
+        <service
+            android:name=".CowService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".ServiceActivity"></activity>
     </application>
 
 </manifest>

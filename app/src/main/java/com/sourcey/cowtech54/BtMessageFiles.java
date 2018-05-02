@@ -133,7 +133,9 @@ public class BtMessageFiles {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                filePathText.setText(filePathStr);
+               // assert filePathText != null; //verify not null
+                if(filePathText!=null)
+                    filePathText.setText(filePathStr);
             }
         });
     }

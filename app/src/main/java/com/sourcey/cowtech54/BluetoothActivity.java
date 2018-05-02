@@ -38,7 +38,6 @@ import com.androidplot.ui.TableOrder;
 import com.androidplot.xy.PanZoom;
 import com.androidplot.xy.StepMode;
 import com.androidplot.xy.XYPlot;
-import com.androidplot.xy.XYSeries;
 
 import java.io.File;
 import java.io.IOException;
@@ -47,8 +46,6 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Method;
 import java.util.LinkedList;
-import java.util.Observable;
-import java.util.Observer;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.UUID;
@@ -85,7 +82,7 @@ public class BluetoothActivity extends AppCompatActivity {
 
     String mMessage; //Message to transmit to main
 
-    private final String TAG = BluetoothActivityV1.class.getSimpleName();
+    private final String TAG = BluetoothActivity.class.getSimpleName();
     private static Handler mHandler; // Our main handler that will receive callback notifications
     private ConnectedThread mConnectedThread; // bluetooth background worker thread to send and receive data
     private BluetoothSocket mBTSocket = null; // bi-directional client-to-client data path
@@ -881,7 +878,7 @@ public class BluetoothActivity extends AppCompatActivity {
 
         //returnIntent.putExtra(MainActivity.EXTRA_BT_MESSAGE, mMessage);
         //returnIntent.putExtra(MainActivity.EXTRA_COLOR, mCurrentBackgroundColor);
-        //setResult(BluetoothActivityV1.RESULT_OK, returnIntent);
+        //setResult(BluetoothActivity.RESULT_OK, returnIntent);
 
         //finish();
 /*
@@ -1040,116 +1037,116 @@ public class BluetoothActivity extends AppCompatActivity {
     //----------*-------------------*-------------------------------
     //----------*-------------------*-------------------------------
 
-    class DynamicXYDatasource implements Runnable {
-
-        // encapsulates management of the observers watching this datasource for update events:
-        class MyObservable extends Observable {
-            @Override
-            public void notifyObservers() {
-                setChanged();
-                super.notifyObservers();
-            }
-        }
-
-
-        private static final int SAMPLE_SIZE = 31;
-
-        private MyObservable notifier;
-        private boolean keepRunning = false;
-
-        {
-            notifier = new MyObservable();
-        }
-
-        public void stopThread() {
-            keepRunning = false;
-        }
-
-        //@Override
-        public void run() {
-            try {
-                keepRunning = true;
-                boolean isRising = true;
-                while (keepRunning) {
-
-                    Thread.sleep(10); // decrease or remove to speed up the refresh rate.
-
-                    notifier.notifyObservers();
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-
-        public int getItemCount(int series) {
-            return SAMPLE_SIZE;
-        }
-
-        public Number getX(int series, int index) {
-            if (index >= SAMPLE_SIZE) {
-                throw new IllegalArgumentException();
-            }
-            return index;
-        }
-
-        public Number getY(int series, int index) {
-            if (index >= SAMPLE_SIZE) {
-                throw new IllegalArgumentException();
-            }
-            /*double angle = (index + (phase))/FREQUENCY;
-            double amp = sinAmp * Math.sin(angle);
-            switch (series) {
-                case SINE1:
-                    return amp;
-                case SINE2:
-                    return -amp;
-                default:
-                    throw new IllegalArgumentException();
-            }*/
-            return 1; //
-        }
-
-        public void addObserver(Observer observer) {
-            notifier.addObserver(observer);
-        }
-
-        public void removeObserver(Observer observer) {
-            notifier.deleteObserver(observer);
-        }
-
-    }
-
-    class DynamicSeries implements XYSeries {
-        private DynamicXYDatasource datasource;
-        private int seriesIndex;
-        private String title;
-
-        public DynamicSeries(DynamicXYDatasource datasource, int seriesIndex, String title) {
-            this.datasource = datasource;
-            this.seriesIndex = seriesIndex;
-            this.title = title;
-        }
-
-        @Override
-        public String getTitle() {
-            return title;
-        }
-
-        @Override
-        public int size() {
-            return datasource.getItemCount(seriesIndex);
-        }
-
-        @Override
-        public Number getX(int index) {
-            return datasource.getX(seriesIndex, index);
-        }
-
-        @Override
-        public Number getY(int index) {
-            return datasource.getY(seriesIndex, index);
-        }
-    }
+//    class DynamicXYDatasource implements Runnable {
+//
+//        // encapsulates management of the observers watching this datasource for update events:
+//        class MyObservable extends Observable {
+//            @Override
+//            public void notifyObservers() {
+//                setChanged();
+//                super.notifyObservers();
+//            }
+//        }
+//
+//
+//        private static final int SAMPLE_SIZE = 31;
+//
+//        private MyObservable notifier;
+//        private boolean keepRunning = false;
+//
+//        {
+//            notifier = new MyObservable();
+//        }
+//
+//        public void stopThread() {
+//            keepRunning = false;
+//        }
+//
+//        //@Override
+//        public void run() {
+//            try {
+//                keepRunning = true;
+//                boolean isRising = true;
+//                while (keepRunning) {
+//
+//                    Thread.sleep(10); // decrease or remove to speed up the refresh rate.
+//
+//                    notifier.notifyObservers();
+//                }
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//
+//        public int getItemCount(int series) {
+//            return SAMPLE_SIZE;
+//        }
+//
+//        public Number getX(int series, int index) {
+//            if (index >= SAMPLE_SIZE) {
+//                throw new IllegalArgumentException();
+//            }
+//            return index;
+//        }
+//
+//        public Number getY(int series, int index) {
+//            if (index >= SAMPLE_SIZE) {
+//                throw new IllegalArgumentException();
+//            }
+//            /*double angle = (index + (phase))/FREQUENCY;
+//            double amp = sinAmp * Math.sin(angle);
+//            switch (series) {
+//                case SINE1:
+//                    return amp;
+//                case SINE2:
+//                    return -amp;
+//                default:
+//                    throw new IllegalArgumentException();
+//            }*/
+//            return 1; //
+//        }
+//
+//        public void addObserver(Observer observer) {
+//            notifier.addObserver(observer);
+//        }
+//
+//        public void removeObserver(Observer observer) {
+//            notifier.deleteObserver(observer);
+//        }
+//
+//    }
+//
+//    class DynamicSeries implements XYSeries {
+//        private DynamicXYDatasource datasource;
+//        private int seriesIndex;
+//        private String title;
+//
+//        public DynamicSeries(DynamicXYDatasource datasource, int seriesIndex, String title) {
+//            this.datasource = datasource;
+//            this.seriesIndex = seriesIndex;
+//            this.title = title;
+//        }
+//
+//        @Override
+//        public String getTitle() {
+//            return title;
+//        }
+//
+//        @Override
+//        public int size() {
+//            return datasource.getItemCount(seriesIndex);
+//        }
+//
+//        @Override
+//        public Number getX(int index) {
+//            return datasource.getX(seriesIndex, index);
+//        }
+//
+//        @Override
+//        public Number getY(int index) {
+//            return datasource.getY(seriesIndex, index);
+//        }
+//    }
 
 }
 

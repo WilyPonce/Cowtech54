@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity { //ActionBarActivity
     private Button _gyroBtn;
     private Button _simplePlotBtn;
     private Button _dynamicPlotBtn;
-    private Button _runTestBtn;
+    private Button _serviceBtn;
 
     //Checker if btactivity has started once
     private boolean btActStarted = false;
@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity { //ActionBarActivity
         _gyroBtn = (Button) findViewById(R.id.gyroBtn);
         _simplePlotBtn = (Button) findViewById(R.id.simplePlotBtn);
         _dynamicPlotBtn = (Button) findViewById(R.id.dynamicPlotBtn);
-        _runTestBtn = (Button) findViewById(R.id.runTestBtn);
+        _serviceBtn = (Button) findViewById(R.id.serviceBtn);
 
         _connectedBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,10 +164,10 @@ public class MainActivity extends AppCompatActivity { //ActionBarActivity
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
             }
         });
-        _runTestBtn.setOnClickListener(new View.OnClickListener() {
+        _serviceBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent Intent = new Intent(getApplicationContext(), RunTestActivity.class);
+                Intent Intent = new Intent(getApplicationContext(), ServiceActivity.class);
 
                 startActivity(Intent);
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
