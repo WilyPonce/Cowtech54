@@ -81,8 +81,6 @@ public class BtMessageManager {
     }
 
     //Getters
-
-
     public Set<String> getIDsListSet() {
         return IDsListSet;
     }

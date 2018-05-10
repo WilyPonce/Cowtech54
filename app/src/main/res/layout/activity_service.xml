@@ -36,5 +36,26 @@
         android:layout_weight="1"
 
         android:text="STOP COW SERVICE" />
+    <Button
+        android:id="@+id/serviceBindBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="BIND COW SERVICE" />
+
+    <Button
+        android:id="@+id/serviceUnbindBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+
+        android:text="UNBIND COW SERVICE" />
+    <Button
+        android:id="@+id/serviceUpdateBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+
+        android:text="UPDATE FRM SERVICE" />
 
 </LinearLayout>

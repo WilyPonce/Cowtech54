@@ -127,6 +127,8 @@ public class BtMessageFiles {
             } else {
                 Log.d(TAG, "Failed to create the parent dir: " + parentDir.getName());
             }
+        }else{
+            Log.d(TAG,"New file path generated: " + filePathStr);
         }
 
 

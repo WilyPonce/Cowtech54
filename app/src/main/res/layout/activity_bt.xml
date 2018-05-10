@@ -36,6 +36,7 @@
                 android:scaleY="1.2"
                 android:text="Ext GPS"
                 android:textStyle="bold"
+                android:layoutDirection="rtl"
                 android:visibility="visible" />
 
 

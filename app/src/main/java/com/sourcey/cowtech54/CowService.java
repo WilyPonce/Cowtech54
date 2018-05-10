@@ -6,6 +6,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
@@ -24,6 +25,9 @@ import java.util.UUID;
 
 public class CowService extends Service {
     private final String TAG = CowService.class.getSimpleName();
+
+    // Binder given to clients
+    private final IBinder cBinder = new CowBinder();
 
     private static Handler mHandler; // Our main handler that will receive callback notifications
     private ConnectedThread cConnectedThread; // bluetooth background worker thread to send and receive data
@@ -51,6 +55,14 @@ public class CowService extends Service {
     public CowService() {
     }
 
+    public BtMessageFiles getFileCSV() {
+        return fileCSV;
+    }
+
+    public void setFileCSV(BtMessageFiles fileCSV) {
+        this.fileCSV = fileCSV;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -66,6 +78,8 @@ public class CowService extends Service {
         //Create BtMessageManager object
         btMessageManager = new BtMessageManager();
 
+        //Init filcsv
+        initBtMessageFiles();
 
         if(mBTAdapter.isEnabled()) {
             //TODO: Create strings in SharedPreferences that are to update an
@@ -298,9 +312,21 @@ public class CowService extends Service {
         mHandler.removeCallbacks(cConnectedThread); //Remove possible conflicts
     }
 
+    /**
+     * Class used for the client Binder.  Because we know this service always
+     * runs in the same process as its clients, we don't need to deal with IPC.
+     */
+    public class CowBinder extends Binder {
+        CowService getService() {
+            // Return this instance of LocalService so clients can call public methods
+            return CowService.this;
+        }
+    }
+
     @Override
     public IBinder onBind(Intent intent) {
         // TODO: Return the communication channel to the service.
-        throw new UnsupportedOperationException("Not yet implemented");
+        //throw new UnsupportedOperationException("Not yet implemented");
+        return cBinder;
     }
 }
