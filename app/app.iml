@@ -115,29 +115,29 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 25 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="com.amazonaws:aws-android-sdk-ddb-mapper:2.6.19@jar" level="project" />
     <orderEntry type="library" name="com.android.support:support-media-compat-26.1.0" level="project" />
+    <orderEntry type="library" name="com.amazonaws:aws-android-sdk-kms:2.6.19@jar" level="project" />
     <orderEntry type="library" name="com.android.support:support-annotations:27.0.2@jar" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-tasks-12.0.1" level="project" />
     <orderEntry type="library" name="android.arch.lifecycle:common:1.0.0@jar" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-basement-12.0.1" level="project" />
     <orderEntry type="library" name="com.android.support:support-fragment-26.1.0" level="project" />
+    <orderEntry type="library" name="com.amazonaws:aws-android-sdk-ddb:2.6.19@jar" level="project" />
     <orderEntry type="library" name="android.arch.lifecycle:runtime-1.0.0" level="project" />
-    <orderEntry type="library" name="com.amazonaws:aws-android-sdk-ddb-mapper:2.6.18@jar" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-base-license-12.0.1" level="project" />
-    <orderEntry type="library" name="com.amazonaws:aws-android-sdk-ddb:2.6.18@jar" level="project" />
     <orderEntry type="library" name="com.android.support.constraint:constraint-layout-solver:1.0.2@jar" level="project" />
     <orderEntry type="library" name="com.android.support:support-core-utils-26.1.0" level="project" />
     <orderEntry type="library" name="com.android.support.constraint:constraint-layout-1.0.2" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-plus-12.0.1" level="project" />
     <orderEntry type="library" name="com.android.support:support-core-ui-26.1.0" level="project" />
     <orderEntry type="library" name="commons-beanutils:commons-beanutils:1.9.3@jar" level="project" />
-    <orderEntry type="library" name="com.amazonaws:aws-android-sdk-s3:2.6.18@jar" level="project" />
     <orderEntry type="library" name="commons-logging:commons-logging:1.2@jar" level="project" />
-    <orderEntry type="library" name="com.amazonaws:aws-android-sdk-core:2.6.18@jar" level="project" />
-    <orderEntry type="library" name="com.amazonaws:aws-android-sdk-mobile-client-2.6.18" level="project" />
+    <orderEntry type="library" name="com.amazonaws:aws-android-sdk-mobile-client-2.6.19" level="project" />
     <orderEntry type="library" name="com.android.support:support-compat-26.1.0" level="project" />
     <orderEntry type="library" name="com.android.support:animated-vector-drawable-25.3.1" level="project" />
     <orderEntry type="library" name="com.halfhp.fig:figlib-1.0.7" level="project" />
+    <orderEntry type="library" name="com.amazonaws:aws-android-sdk-s3:2.6.19@jar" level="project" />
     <orderEntry type="library" name="com.android.support:transition-25.3.1" level="project" />
     <orderEntry type="library" name="com.android.support:design-25.3.1" level="project" />
     <orderEntry type="library" name="android.arch.core:common:1.0.0@jar" level="project" />
@@ -148,13 +148,13 @@
     <orderEntry type="library" name="com.android.support:appcompat-v7-25.3.1" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-plus-license-12.0.1" level="project" />
     <orderEntry type="library" name="com.android.support:support-v4-26.1.0" level="project" />
-    <orderEntry type="library" name="com.amazonaws:aws-android-sdk-kms:2.6.18@jar" level="project" />
+    <orderEntry type="library" name="com.amazonaws:aws-android-sdk-core:2.6.19@jar" level="project" />
     <orderEntry type="library" name="com.opencsv:opencsv:4.1@jar" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-tasks-license-12.0.1" level="project" />
     <orderEntry type="library" name="com.androidplot:androidplot-core-1.5.4" level="project" />
-    <orderEntry type="library" name="com.amazonaws:aws-android-sdk-auth-core-2.6.18" level="project" />
     <orderEntry type="library" name="com.android.support:support-vector-drawable-25.3.1" level="project" />
     <orderEntry type="library" name="commons-collections:commons-collections:3.2.2@jar" level="project" />
+    <orderEntry type="library" name="com.amazonaws:aws-android-sdk-auth-core-2.6.19" level="project" />
     <orderEntry type="library" name="com.android.support:recyclerview-v7-25.3.1" level="project" />
     <orderEntry type="library" name="org.apache.commons:commons-lang3:3.6@jar" level="project" />
     <orderEntry type="library" name="android-android-25" level="project" />
