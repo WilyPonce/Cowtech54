@@ -38,7 +38,6 @@ public class BtMessageFiles {
     private String timeString; //
     private int timeGenerator; //in minutes
 
-
     private Timer timer;
 
     private Context context;
@@ -66,7 +65,6 @@ public class BtMessageFiles {
     }
 
     //methods
-
     public void setParentDirStr(String parentDirStr) {
         this.parentDirStr = parentDirStr;
     }
@@ -98,6 +96,10 @@ public class BtMessageFiles {
 
     public String getPrefix() {
         return prefix;
+    }
+
+    public void stopFiles(){
+        timer.cancel();
     }
 
     public String getDateString() {
@@ -135,7 +137,7 @@ public class BtMessageFiles {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-               // assert filePathText != null; //verify not null
+                // assert filePathText != null; //verify not null
                 if(filePathText!=null)
                     filePathText.setText(filePathStr);
             }
@@ -176,7 +178,7 @@ public class BtMessageFiles {
             csvWriter.writeNext(data);
             csvWriter.close();
 
-           // Log.d(TAG, "Successfully data written in CSV");
+            // Log.d(TAG, "Successfully data written in CSV");
             //Toast.makeText(getApplicationContext(),"Data written in CSV",Toast.LENGTH_SHORT).show();
         }catch(IOException e){
             //Probably filepath is wrong or cannot be accesed
@@ -213,7 +215,7 @@ public class BtMessageFiles {
         timer.scheduleAtFixedRate(tasknew,100,1000);
     }
 
-    class timerTask extends TimerTask{
+    class timerTask extends TimerTask {
 
 
 

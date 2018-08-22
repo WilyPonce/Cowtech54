@@ -272,6 +272,17 @@ public class PlotRun implements Runnable{
             LinkedList<Number> seriesList7c = (LinkedList<Number>) seriesList7.clone();
             LinkedList<Number> seriesList8c = (LinkedList<Number>) seriesList8.clone();
 
+            //check if they are of the same size
+            int lenDomain = domainListc.size();
+
+            if(lenDomain != seriesList2c.size()) {seriesList2c = seriesList1c; enablerIntArr[2]=0;}
+            if(lenDomain != seriesList3c.size()) {seriesList3c = seriesList1c; enablerIntArr[3]=0;}
+            if(lenDomain != seriesList4c.size()) {seriesList4c = seriesList1c; enablerIntArr[4]=0;}
+            if(lenDomain != seriesList5c.size()) {seriesList5c = seriesList1c; enablerIntArr[5]=0;}
+            if(lenDomain != seriesList6c.size()) {seriesList6c = seriesList1c; enablerIntArr[6]=0;}
+            if(lenDomain != seriesList7c.size()) {seriesList7c = seriesList1c; enablerIntArr[7]=0;}
+            if(lenDomain != seriesList8c.size()) {seriesList8c = seriesList1c; enablerIntArr[8]=0;}
+
             XYSeries series1 = new SimpleXYSeries(domainListc,
                     seriesList1c, "B1");
             XYSeries series2 = new SimpleXYSeries(domainListc,

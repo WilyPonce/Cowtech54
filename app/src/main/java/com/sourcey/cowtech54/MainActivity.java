@@ -1,5 +1,6 @@
 package com.sourcey.cowtech54;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
@@ -61,8 +62,8 @@ public class MainActivity extends AppCompatActivity { //ActionBarActivity
         setContentView(R.layout.activity_main);
 
 
-        Intent intent = new Intent(this, LoginActivity.class);  //  << ========== ----
-        startActivity(intent);
+//        Intent intent = new Intent(this, LoginActivity.class);  //  << ========== ----
+//        startActivity(intent);
 
       //  ButterKnife.bind(this); // In order to bind the objects and buttons views!
 
