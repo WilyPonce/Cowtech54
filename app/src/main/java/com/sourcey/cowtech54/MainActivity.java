@@ -16,13 +16,22 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity { //ActionBarActivity
     private static final String TAG = "MainActivity";
-
+    public static final String urlAdress = "http://Cowapi.sytes.net/api/main/GuardarData";
     private TextView mBluetoothDevice;
 
     private static final int REQUEST_BT = 1;
@@ -65,13 +74,13 @@ public class MainActivity extends AppCompatActivity { //ActionBarActivity
 //        Intent intent = new Intent(this, LoginActivity.class);  //  << ========== ----
 //        startActivity(intent);
 
-      //  ButterKnife.bind(this); // In order to bind the objects and buttons views!
+        //  ButterKnife.bind(this); // In order to bind the objects and buttons views!
 
         clientManager = new AmazonClientManager(this);
 
         checkPermissions();
 
-        mBluetoothDevice = (TextView)findViewById(R.id.btText);
+        mBluetoothDevice = (TextView) findViewById(R.id.btText);
 
         _btButton = (Button) findViewById(R.id.bt_mainButton);
         _dynamoButton = (Button) findViewById(R.id.dynamo_mainButton);
@@ -94,10 +103,10 @@ public class MainActivity extends AppCompatActivity { //ActionBarActivity
                 }
                 else //onBackPressed();
                 {*/
-                    Intent openBtAct= new Intent(MainActivity.this, BluetoothActivity.class);
-                    openBtAct.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    startActivityIfNeeded(openBtAct, 0);
-                    overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+                Intent openBtAct = new Intent(MainActivity.this, BluetoothActivity.class);
+                openBtAct.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivityIfNeeded(openBtAct, 0);
+                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
                 //}
             }
         });
@@ -132,7 +141,7 @@ public class MainActivity extends AppCompatActivity { //ActionBarActivity
             }
         });
         //---- GYROSCOPE BUTTN
-        _gyroBtn.setOnClickListener(new View.OnClickListener(){
+        _gyroBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Start the Dynamo activity
@@ -144,7 +153,7 @@ public class MainActivity extends AppCompatActivity { //ActionBarActivity
             }
         });
 
-        _simplePlotBtn.setOnClickListener(new View.OnClickListener(){
+        _simplePlotBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Start the Dynamo activity
@@ -155,7 +164,7 @@ public class MainActivity extends AppCompatActivity { //ActionBarActivity
             }
         });
 
-        _dynamicPlotBtn.setOnClickListener(new View.OnClickListener(){
+        _dynamicPlotBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Start the Dynamo activity
@@ -177,10 +186,10 @@ public class MainActivity extends AppCompatActivity { //ActionBarActivity
 
 
         /* ------ Dynamo buttons  --------- */
-        _sendBtn = (Button)findViewById(R.id.dynamoSendBtn);
-        _updateBtn = (Button)findViewById(R.id.dynamoUpdateBtn);
-        _createBtn = (Button)findViewById(R.id.dynamoCreateBtn);
-        _deleteBtn = (Button)findViewById(R.id.dynamoDeleteBtn);
+        _sendBtn = (Button) findViewById(R.id.dynamoSendBtn);
+        _updateBtn = (Button) findViewById(R.id.dynamoUpdateBtn);
+        _createBtn = (Button) findViewById(R.id.dynamoCreateBtn);
+        _deleteBtn = (Button) findViewById(R.id.dynamoDeleteBtn);
 
         /*_sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -260,17 +269,17 @@ public class MainActivity extends AppCompatActivity { //ActionBarActivity
             Manifest.permission.ACCESS_FINE_LOCATION};
 
 
-    private  boolean checkPermissions() {
+    private boolean checkPermissions() {
         int result;
         List<String> listPermissionsNeeded = new ArrayList<>();
-        for (String p:permissionsList) {
-            result = ContextCompat.checkSelfPermission(this,p);
+        for (String p : permissionsList) {
+            result = ContextCompat.checkSelfPermission(this, p);
             if (result != PackageManager.PERMISSION_GRANTED) {
                 listPermissionsNeeded.add(p);
             }
         }
         if (!listPermissionsNeeded.isEmpty()) {
-            ActivityCompat.requestPermissions(this, listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]),MULTIPLE_PERMISSIONS );
+            ActivityCompat.requestPermissions(this, listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]), MULTIPLE_PERMISSIONS);
             return false;
         }
         return true;
@@ -280,8 +289,8 @@ public class MainActivity extends AppCompatActivity { //ActionBarActivity
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissionsList[], int[] grantResults) {
         switch (requestCode) {
-            case MULTIPLE_PERMISSIONS:{
-                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+            case MULTIPLE_PERMISSIONS: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     // permissions granted.
                 } else {
                     String permissions = "";
@@ -298,13 +307,13 @@ public class MainActivity extends AppCompatActivity { //ActionBarActivity
 
     //===========================================================================
     //============================= DYNAMO   ====================================
-    public void createTable(){
+    public void createTable() {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 //dynamoDBMapper.save(newsItem);
 
-               DynamoDBManager.createTable();
+                DynamoDBManager.createTable();
 
 
                 /*if (result.toString().length() != 0){
@@ -326,7 +335,7 @@ public class MainActivity extends AppCompatActivity { //ActionBarActivity
 
         newsItem.setCanID(55.0);
 
-        Long tsLong = System.currentTimeMillis()/1000;
+        Long tsLong = System.currentTimeMillis() / 1000;
         String ts = tsLong.toString();
 
         newsItem.setTimeStamp(Double.parseDouble(ts));
@@ -458,6 +467,36 @@ public class MainActivity extends AppCompatActivity { //ActionBarActivity
             this.tableStatus = tableStatus;
         }
     }
+
+    //region Métodos de Volley
+    public void MainActivityPOSTRequest(JSONObject jsonCompleto) {
+
+        JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, urlAdress, jsonCompleto,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Toast.makeText(MainActivity.this, "Request hecho al servidor con respuesta:" + response.toString(),
+                                Toast.LENGTH_SHORT).show();
+
+                        try {
+                            VolleyLog.v("Response:%n %s", response.toString(4));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.e("Error: ", error.getMessage());
+            }
+        });
+
+// add the request object to the queue to be executed
+        VolleySingleton.getmInstance(MainActivity.this).addToRequestQueue(req);
+
+    }
+
+//endregion
 
     //===========================================================================
     @Override
