@@ -1,5 +1,21 @@
 package com.sourcey.cowtech54;
 
+
+
+
+
+import android.os.Handler;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -43,6 +59,41 @@ public class BtMessageManager {
     public int recIDs=0;
     public static String MessagePurged = "";
     public static String MessagePurgedCopy = "";
+
+    private JSONArray JsonArrayCompleto = new JSONArray();
+    public JSONObject JsonCompleto = new JSONObject();
+    //region Temporizador de Requests
+
+    MainActivity mActivity= new MainActivity();
+    private boolean contadorCorriendo = false;
+    private int contadorLimite = 5;
+    private Handler timerHandler = new Handler();
+    private Runnable timerRunnable = new Runnable() {
+
+        @Override
+        public void run() {
+
+            ///modificar valores y enviarlos al metodo desde aqui?
+            contadorCorriendo = true;
+            contadorLimite = contadorLimite - 1;
+            if (contadorLimite > 0) {
+                timerHandler.postDelayed(this, 1000);
+            }
+            else {
+                contadorLimite = 5;
+                contadorCorriendo = false;
+                timerHandler.removeCallbacks(timerRunnable);
+            }
+        }
+    };
+
+
+    public void ActivarContador() {
+        timerHandler.postDelayed(timerRunnable, 1000);
+    }
+
+    //endregion
+
 
 
     // -- Constructors
@@ -130,6 +181,58 @@ public class BtMessageManager {
 
                 //Splitting the message
                 Number[] IDtram = Splitter2Num(messageSplitStr[i]);
+
+
+
+////////////////////////
+// For Windows shortcut expand: ctrl + '+' (collapse: ctrl + '-') shortcut expand all: shift + ctrl + '+' (collapse all: shift + ctrl + '-')
+////////////////////////
+
+
+                //region REQUEST POST TO SERVER
+
+                JSONObject JsonSingular = new JSONObject();
+
+                try {
+                    JsonSingular.put("IdCan",IDtram[1]);
+                    JsonSingular.put("Length",IDtram[2]);
+                    JsonSingular.put("B1",IDtram[3]);
+                    JsonSingular.put("B2",IDtram[4]);
+                    JsonSingular.put("B3",IDtram[5]);
+                    JsonSingular.put("B4",IDtram[6]);
+                    JsonSingular.put("B5",IDtram[7]);
+                    JsonSingular.put("B6",IDtram[8]);
+                    JsonSingular.put("B7",IDtram[9]);
+                    JsonSingular.put("B8",IDtram[10]);
+                    JsonSingular.put("IdCamion",1);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                JsonArrayCompleto.put(JsonSingular);
+
+
+
+                if (!contadorCorriendo)
+                {
+                    ActivarContador();
+
+                    try {
+                        JsonCompleto.put("data" , JsonArrayCompleto);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    mActivity.MainActivityPOSTRequest(JsonCompleto);
+                    JsonCompleto.remove("data");
+                    JsonArrayCompleto = new JSONArray();
+
+
+                }
+                //endregion
+
+
 
                 // [1] is the CAN ID positi
                 Number currentIDNum = IDtram[1];
@@ -269,6 +372,13 @@ public class BtMessageManager {
         }
         return numArr;
     }
+
+
+    //region Metodo armar JSONs
+
+
+
+    //endregion
 
     /*==============================================================*/
 
